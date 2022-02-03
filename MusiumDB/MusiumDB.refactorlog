@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="680924bd-7dee-4f5a-a85d-ea72470968a8" ChangeDateTime="02/03/2022 15:29:11">
+    <Property Name="ElementName" Value="[dbo].[AlbumSong].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AlbumSong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="albumId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0a371fdb-6c7f-44fa-bf3e-3ff508bfbbab" ChangeDateTime="02/03/2022 15:29:30">
+    <Property Name="ElementName" Value="[dbo].[AllowedToAccess].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AllowedToAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="playlistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c5645273-37ea-42ce-8495-cd129059c11c" ChangeDateTime="02/03/2022 15:30:03">
+    <Property Name="ElementName" Value="[dbo].[ArtistSong].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArtistSong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="artistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0c61268a-a4ca-4727-94f2-f9098ace7e54" ChangeDateTime="02/03/2022 15:30:32">
+    <Property Name="ElementName" Value="[dbo].[PlaylistSong].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlaylistSong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="playlistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0a02cb7b-0008-4dd3-9284-037274073cd8" ChangeDateTime="02/03/2022 15:37:25">
+    <Property Name="ElementName" Value="[dbo].[Album].[type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Album]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="releaseType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6fa9f338-9cf7-479b-9cb9-58b3ad3159d7" ChangeDateTime="02/03/2022 15:37:58">
+    <Property Name="ElementName" Value="[dbo].[Album].[label]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Album]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="releasedOnLabel" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="11f2bd8e-0e5d-4aba-8e05-7c9b9d0a3a89" ChangeDateTime="02/03/2022 15:40:23">
+    <Property Name="ElementName" Value="[dbo].[Song].[genre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Song]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="genreId" />
+  </Operation>
+</Operations>

@@ -56,5 +56,23 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Album.sql" />
+    <Build Include="Tables\Artist.sql" />
+    <Build Include="Tables\AlbumSong.sql" />
+    <Build Include="Tables\ArtistSong.sql" />
+    <Build Include="Tables\History.sql" />
+    <Build Include="Tables\Song.sql" />
+    <Build Include="Tables\PlaylistSong.sql" />
+    <Build Include="Tables\Playlist.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\AllowedToAccess.sql" />
+    <Build Include="Tables\AllowedToAddSongs.sql" />
+    <Build Include="Tables\Genre.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MusiumDB.refactorlog" />
   </ItemGroup>
 </Project>
