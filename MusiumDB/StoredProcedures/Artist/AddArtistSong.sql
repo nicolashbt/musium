@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddArtistSong]
-	@songId INT,
-	@artistId INT
+	@artistId INT,
+	@songId INT
 AS
 BEGIN
 	INSERT INTO ArtistSong(songId,artistId)
