@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Song]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [name] NVARCHAR(50) NOT NULL, 
     [isActive] BIT NOT NULL, 
     [filePath] NVARCHAR(250) NULL, 
