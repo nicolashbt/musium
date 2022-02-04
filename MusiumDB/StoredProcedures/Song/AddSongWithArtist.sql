@@ -13,5 +13,5 @@ BEGIN
 	SET @songId = SCOPE_IDENTITY();
 
 	INSERT INTO ArtistSong(songId,artistId)
-	SELECT @songId, id FROM T_ArtistId
+	SELECT @songId, id FROM @artistId
 END
