@@ -57,6 +57,12 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\User" />
+    <Folder Include="StoredProcedures\Song" />
+    <Folder Include="Views" />
+    <Folder Include="StoredProcedures\Artist" />
+    <Folder Include="Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Album.sql" />
@@ -71,8 +77,26 @@
     <Build Include="Tables\AllowedToAccess.sql" />
     <Build Include="Tables\AllowedToAddSongs.sql" />
     <Build Include="Tables\Genre.sql" />
+    <Build Include="StoredProcedures\User\UserLogin.sql" />
+    <Build Include="StoredProcedures\User\UserRegister.sql" />
+    <Build Include="StoredProcedures\Song\AddSong.sql" />
+    <Build Include="StoredProcedures\Song\DeleteSong.sql" />
+    <Build Include="StoredProcedures\Song\UpdateSong.sql" />
+    <Build Include="Views\V_ActiveSongs.sql" />
+    <Build Include="Views\V_InactiveSongs.sql" />
+    <Build Include="StoredProcedures\Song\DetailSong.sql" />
+    <Build Include="StoredProcedures\Artist\AddArtist.sql" />
+    <Build Include="StoredProcedures\Artist\AddArtistSong.sql" />
+    <Build Include="Types\T_ArtistId.sql" />
+    <Build Include="StoredProcedures\Song\AddSongWithArtist.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MusiumDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="DBFiller.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MusiumDB.publish.xml" />
   </ItemGroup>
 </Project>
