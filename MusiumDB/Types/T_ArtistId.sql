@@ -1,0 +1,4 @@
+﻿CREATE TYPE T_ArtistId AS TABLE
+(
+	id INT NOT NULL
+);
