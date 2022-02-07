@@ -1,1 +1,25 @@
-<p>detail works!</p>
+<h3><span *ngFor="let a of artists; index as i">{{a.name}}<span *ngIf="i<artists.length-1">, </span></span> - {{songDetail.name}}</h3>
+<div>
+  <hr />
+  <dl class="row">
+    <dt class="col-3">Id</dt>    
+    <dd class="col-9">{{songDetail.id}}</dd>
+    
+    <dt class="col-3">Artists</dt>
+    <dd class="col-9"><span *ngFor="let a of artists; index as i">{{a.name}}<span *ngIf="i<artists.length-1">, </span></span></dd>
+    
+    <dt class="col-3">Name</dt>
+    <dd class="col-9">{{songDetail.name}}</dd>
+
+    <dt class="col-3">Is Active</dt>
+    <dd class="col-9">{{songDetail.isActive}}</dd>
+
+    <dt class="col-3">File Path</dt>
+    <dd class="col-9">{{songDetail.filePath}}</dd>
+
+    <dt class="col-3">Duration</dt>
+    <dd class="col-9">{{songDetail.duration}}</dd>
+
+
+  </dl>
+</div>

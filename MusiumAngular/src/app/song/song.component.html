@@ -1,32 +1,42 @@
 <h1>Song List</h1>
 
-<span>
-  <button class="btn btn-primary">Add song</button> 
-</span>
-<table class="table">
-  <thead>
-    <tr>
-      <th>
-        Id
-      </th>
-      <th>
-        Artists
-      </th>
-      <th>
-        Name
-      </th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let song of songs">
-      <td>{{song.id}}</td>
-      <td><app-artistsong [songId]="song.id"></app-artistsong></td>
-      <td>{{song.name}}</td>
-      <td>
-        <a [routerLink]="[song.id + '/edit']" routerLinkActive="router-link-active" >Edit</a> | 
-        <a [routerLink]="[song.id + '/details']" routerLinkActive="router-link-active" >Details</a> | 
-        <a href="">Delete</a>
-      </td>
+<div class="row">
+  <div class="col-6">
 
-    </tr>    
-  </tbody>
-</table>
+    <span>
+      <button class="btn btn-primary">Add song</button>
+    </span>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Id
+          </th>
+          <th>
+            Artists
+          </th>
+          <th>
+            Name
+          </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of songs">
+          <td>{{song.id}}</td>
+          <td>
+            <app-artistsong [songId]="song.id"></app-artistsong>
+          </td>
+          <td>{{song.name}}</td>
+          <td>
+            <a [routerLink]="[song.id + '/edit']" routerLinkActive="router-link-active">Edit</a> |
+            <a [routerLink]="[song.id + '/details']" routerLinkActive="router-link-active">Details</a> |
+            <a href="">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>
