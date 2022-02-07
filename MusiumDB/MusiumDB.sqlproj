@@ -77,8 +77,6 @@
     <Build Include="Tables\AllowedToAccess.sql" />
     <Build Include="Tables\AllowedToAddSongs.sql" />
     <Build Include="Tables\Genre.sql" />
-    <Build Include="StoredProcedures\User\UserLogin.sql" />
-    <Build Include="StoredProcedures\User\UserRegister.sql" />
     <Build Include="StoredProcedures\Song\AddSong.sql" />
     <Build Include="StoredProcedures\Song\DeleteSong.sql" />
     <Build Include="StoredProcedures\Song\UpdateSong.sql" />
