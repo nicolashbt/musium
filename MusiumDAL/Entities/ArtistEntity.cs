@@ -8,11 +8,6 @@ namespace MusiumDAL.Entities
 {
     public class ArtistEntity
     {
-        public ArtistEntity(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
         public int Id { get; set; }
         public string Name { get; set; }
     }
