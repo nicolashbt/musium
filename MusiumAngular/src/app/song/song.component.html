@@ -1,1 +1,32 @@
-<p>song works!</p>
+<h1>Song List</h1>
+
+<span>
+  <button class="btn btn-primary">Add song</button> 
+</span>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Id
+      </th>
+      <th>
+        Artists
+      </th>
+      <th>
+        Name
+      </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let song of songs">
+      <td>{{song.id}}</td>
+      <td></td>
+      <td>{{song.name}}</td>
+      <td>
+        <a [routerLink]="[song.id + '/edit']" routerLinkActive="router-link-active" >Edit</a> | 
+        <a [routerLink]="[song.id + '/details']" routerLinkActive="router-link-active" >Details</a> | 
+        <a href="">Delete</a>
+      </td>
+
+    </tr>    
+  </tbody>
+</table>
