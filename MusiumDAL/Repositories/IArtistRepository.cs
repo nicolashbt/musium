@@ -9,6 +9,7 @@ namespace MusiumDAL.Repositories
 {
     public interface IArtistRepository
     {
+        public IEnumerable<ArtistEntity> GetBySongId(int songId);
         public IEnumerable<ArtistEntity> GetAllArtists();
         public ArtistEntity GetArtist(int id);
         //public void DeleteArtist(int id);

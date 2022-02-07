@@ -15,6 +15,40 @@ namespace MusiumDAL.Services
         private string _winAuthConnectionString
             = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MusiumDB;Integrated Security=True;Connect Timeout=60;";
 
+        public IEnumerable<ArtistEntity> GetBySongId(int songId)
+        {
+            List<ArtistEntity> artists = new List<ArtistEntity>();
+            using (SqlConnection c = new SqlConnection())
+            {
+                c.ConnectionString = _winAuthConnectionString;
+                using (SqlCommand cmd = c.CreateCommand())
+                {
+                    cmd.CommandText = "Select a.* From ArtistSong ars Join Artist a ON ars.ArtistId = a.Id WHERE SongId = @SongId;";
+                    cmd.Parameters.AddWithValue("SongId", songId);
+                    try
+                    {
+                        c.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                artists.Add(new ArtistEntity()
+                                {
+                                    Id = (int)reader["Id"],
+                                    Name = (string)reader["name"]
+                                });
+                            }
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+            return artists;
+        }
+
         public int AddArtist(ArtistEntity artistEntity)
         {
 

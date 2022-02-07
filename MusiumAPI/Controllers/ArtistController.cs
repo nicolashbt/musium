@@ -24,10 +24,16 @@ namespace MusiumAPI.Controllers
             return Ok(_artistRepository.GetAllArtists().Select(a => a.MapToApi()));
         }
 
-        [HttpGet("{Id}")]
-        public IActionResult GetById(int Id)
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            return Ok(_artistRepository.GetArtist(Id).MapToApi());
+            return Ok(_artistRepository.GetArtist(id).MapToApi());
+        }
+
+        [HttpGet("bysong/{id}")]
+        public IActionResult GetBySongId(int id)
+        {
+            return Ok(_artistRepository.GetBySongId(id).Select(a => a.MapToApi()));
         }
 
         [HttpPost]
