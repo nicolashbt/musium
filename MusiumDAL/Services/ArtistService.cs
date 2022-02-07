@@ -79,7 +79,7 @@ namespace MusiumDAL.Services
             }
             return artist;
         }
-        public IEnumerable<ArtistEntity> GetArtists()
+        public IEnumerable<ArtistEntity> GetAllArtists()
         {
             List<ArtistEntity> artists = new List<ArtistEntity>();
             using (SqlConnection c = new SqlConnection())

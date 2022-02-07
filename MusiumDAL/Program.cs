@@ -32,7 +32,7 @@ namespace MusiumDAL
                 Name = "artist2"
             });
             //Testing GetAllArtists
-            IEnumerable<ArtistEntity> artists = artistService.GetArtists();
+            IEnumerable<ArtistEntity> artists = artistService.GetAllArtists();
             foreach (ArtistEntity artistEntity in artists)
             {
                 Console.WriteLine("Artist name: " + artistEntity.Name + " - id: " + artistEntity.Id);
@@ -43,7 +43,7 @@ namespace MusiumDAL
             {
                 Name = "song1"
             };
-            songService.AddSongWithArtist(songEntity1, artists);
+            songService.AddSong(songEntity1, artists);
             Console.WriteLine("added a song");
 
             //Testing GetAllSongs
