@@ -12,7 +12,7 @@ namespace MusiumDAL.Repositories
         public IEnumerable<SongEntity> GetAllSongs();
         public SongEntity GetSong(int id);
         public void DeleteSong(int id);
-        public void AddSong(SongEntity songEntity, IEnumerable<ArtistEntity> artistEntities);
+        public void AddSong(SongEntity songEntity, IEnumerable<int> artistIds);
         public void UpdateSong(SongEntity songEntity);
     }
 }

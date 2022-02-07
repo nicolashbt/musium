@@ -15,7 +15,7 @@ namespace MusiumDAL.Services
         private string _winAuthConnectionString
             = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MusiumDB;Integrated Security=True;Connect Timeout=60;";
         
-        public void AddSong(SongEntity songEntity, IEnumerable<ArtistEntity> artists)
+        public void AddSong(SongEntity songEntity, IEnumerable<int> artistIds)
         {
             using (SqlConnection c = new SqlConnection())
             {
@@ -33,9 +33,9 @@ namespace MusiumDAL.Services
                     //@artistId T_ArtistId READONLY
                     DataTable ArtistIds = new DataTable();
                     ArtistIds.Columns.Add("id", typeof(int));
-                    foreach (ArtistEntity artistEntity in artists)
+                    foreach (int artistId in artistIds)
                     {
-                        ArtistIds.Rows.Add(artistEntity.Id);
+                        ArtistIds.Rows.Add(artistId);
                     }
                     cmd.Parameters.Add(new SqlParameter("artistId", ArtistIds));
 
