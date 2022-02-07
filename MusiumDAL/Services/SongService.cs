@@ -14,7 +14,7 @@ namespace MusiumDAL.Services
     {
         private string _winAuthConnectionString
             = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MusiumDB;Integrated Security=True;Connect Timeout=60;";
-        
+
         public void AddSong(SongEntity songEntity, IEnumerable<int> artistIds)
         {
             using (SqlConnection c = new SqlConnection())
@@ -74,9 +74,12 @@ namespace MusiumDAL.Services
                             {
                                 SongList.Add(new SongEntity()
                                 {
-                                    Id = (int)reader["Id"],
+                                    Id = (int)reader["id"],
                                     Name = (string)reader["name"],
-                                    IsActive = (bool)reader["IsActive"]
+                                    IsActive = (bool)reader["isActive"],
+                                    FilePath = (reader["filePath"] == DBNull.Value) ? null : (string)reader["filePath"],
+                                    Duration = (reader["duration"] == DBNull.Value) ? null : (int)(reader["duration"]),
+                                    GenreId = (reader["genreId"] == DBNull.Value) ? null : (int)(reader["genreId"])
                                 });
                             }
                         }
@@ -91,7 +94,30 @@ namespace MusiumDAL.Services
         }
         public SongEntity GetSong(int id)
         {
-            throw new NotImplementedException();
+            SongEntity songEntity = new SongEntity();
+            using (SqlConnection c = new SqlConnection())
+            {
+                c.ConnectionString = _winAuthConnectionString;
+                using (SqlCommand cmd = c.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Song WHERE id=@id";
+                    cmd.Parameters.AddWithValue("id", id);
+                    c.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            songEntity.Id = (int)reader["id"];
+                            songEntity.Name = (string)reader["name"];
+                            songEntity.IsActive = (bool)reader["isActive"];
+                            songEntity.FilePath = (reader["filePath"] == DBNull.Value) ? null : (string)reader["filePath"];
+                            songEntity.Duration = (reader["duration"] == DBNull.Value) ? null : (int)(reader["duration"]);
+                            songEntity.GenreId = (reader["genreId"] == DBNull.Value) ? null : (int)(reader["genreId"]);
+                        }
+                    }
+                }
+            }
+            return songEntity;
         }
         public void UpdateSong(SongEntity songEntity)
         {
