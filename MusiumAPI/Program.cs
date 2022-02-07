@@ -1,8 +1,15 @@
+using MusiumDAL.Repositories;
+using MusiumDAL.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ISongRepository,SongService>();
+builder.Services.AddScoped<IArtistRepository,ArtistService>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
