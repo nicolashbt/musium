@@ -6,11 +6,11 @@ import { Song } from '../song.model';
 import { SongService } from '../song.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  selector: 'app-song-detail',
+  templateUrl: './song-detail.component.html',
+  styleUrls: ['./song-detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class SongDetailComponent implements OnInit {
   songDetail!: Song;
   id!: number;
   public artists: Array<Artist> = [];

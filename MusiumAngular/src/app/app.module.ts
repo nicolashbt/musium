@@ -8,7 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { SongComponent } from './song/song.component';
 import { ArtistComponent } from './artist/artist.component';
 import { ArtistsongComponent } from './song/artistsong/artistsong.component';
-import { DetailComponent } from './song/detail/detail.component';
+import { SongEditComponent } from './song/song-edit/song-edit.component';
+import { SongDetailComponent } from './song/song-detail/song-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetailComponent } from './song/detail/detail.component';
     SongComponent,
     ArtistComponent,
     ArtistsongComponent,
-    DetailComponent
+    SongEditComponent,
+    SongDetailComponent
   ],
   imports: [
     BrowserModule,
