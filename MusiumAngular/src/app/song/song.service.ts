@@ -15,7 +15,7 @@ export class SongService {
   constructor(private _http: HttpClient) { }
 
   getAll(): Observable<Song[]> {
-    return this._http.get<Song[]>(this._url)
+    return this._http.get<Song[]>(this._url);
   }
 
   getById(id: number): Observable<Song> {
@@ -23,4 +23,6 @@ export class SongService {
   }
 
   add(songForm: FormGroup) { }
+  
+  edit(songForm: FormGroup) { }
 }
