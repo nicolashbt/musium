@@ -20,7 +20,9 @@ export class ArtistService {
     return this._http.get<Artist[]>(this._url + "/bysong/" + id);
   }
 
-  getById(id: number) { }
+  getById(id: number): Observable<Artist>  {
+    return this._http.get<Artist>(this._url + "/" + id);
+   }
 
   add(artistForm: FormGroup) { }
 }
