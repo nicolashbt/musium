@@ -11,6 +11,7 @@ import { ArtistsongComponent } from './song/artistsong/artistsong.component';
 import { SongEditComponent } from './song/song-edit/song-edit.component';
 import { SongDetailComponent } from './song/song-detail/song-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ArtistsongEditComponent } from './song/song-edit/artistsong-edit/artistsong-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ArtistComponent,
     ArtistsongComponent,
     SongEditComponent,
-    SongDetailComponent
+    SongDetailComponent,
+    ArtistsongEditComponent
   ],
   imports: [
     BrowserModule,
