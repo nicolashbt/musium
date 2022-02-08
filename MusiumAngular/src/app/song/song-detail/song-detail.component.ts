@@ -16,17 +16,16 @@ export class SongDetailComponent implements OnInit {
   public artists: Array<Artist> = [];
 
   constructor(private _songService: SongService,
-    private _artistService:ArtistService,
-    private _route:ActivatedRoute) { }
+    private _artistService: ArtistService,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.songDetail = new Song();
     this._route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this._songService.getById(this.id).subscribe( s => this.songDetail = s);
+        this._songService.getById(this.id).subscribe(s => this.songDetail = s);
         this._artistService.getBySongId(this.id).subscribe(a => this.artists = a);
       });
-      
   }
-
 }
