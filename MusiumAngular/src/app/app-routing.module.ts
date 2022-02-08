@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: 'songlist', component: SongComponent, children: [
       { path: ':id/details', component: SongDetailComponent },
-      { path: ':id/edit', component: SongEditComponent }
+      { path: ':id/edit', component: SongEditComponent },
+      { path: 'add', component: SongEditComponent }
     ]
   },
   { path: 'artistlist', component: ArtistComponent }
