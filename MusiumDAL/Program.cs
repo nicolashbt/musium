@@ -49,6 +49,16 @@ namespace MusiumDAL
             //songService.AddSong(songEntity1, artistsIds);
             //Console.WriteLine("added a song");
 
+            ////Testing UpdateSong
+            //songService.UpdateSong(new SongEntity()
+            //{
+            //    Id = 1,
+            //    Name = "song1"
+            //});
+
+            ////Testing DeleteSong
+            //songService.DeleteSong(1);
+
             ////Testing GetAllSongs
             //songs = songService.GetAllSongs();
             //foreach (SongEntity songEntity in songs)

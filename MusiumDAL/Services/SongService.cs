@@ -52,10 +52,7 @@ namespace MusiumDAL.Services
                 }
             }
         }
-        public void DeleteSong(int id)
-        {
-            throw new NotImplementedException();
-        }
+
         public IEnumerable<SongEntity> GetAllSongs()
         {
             List<SongEntity> SongList = new List<SongEntity>();
@@ -64,7 +61,7 @@ namespace MusiumDAL.Services
                 c.ConnectionString = _winAuthConnectionString;
                 using (SqlCommand cmd = c.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Song";
+                    cmd.CommandText = "SELECT * FROM Song WHERE isActive = 1";
                     try
                     {
                         c.Open();
@@ -121,7 +118,40 @@ namespace MusiumDAL.Services
         }
         public void UpdateSong(SongEntity songEntity)
         {
-            throw new NotImplementedException();
+            using (SqlConnection c = new SqlConnection())
+            {
+                c.ConnectionString = _winAuthConnectionString;
+                using (SqlCommand cmd = c.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UpdateSong";
+                    cmd.Parameters.AddWithValue("id", songEntity.Id);
+                    cmd.Parameters.AddWithValue("name", songEntity.Name);
+                    cmd.Parameters.AddWithValue("isActive", songEntity.IsActive);
+                    cmd.Parameters.AddWithValue("filePath", songEntity.FilePath);
+                    cmd.Parameters.AddWithValue("duration", songEntity.Duration);
+                    cmd.Parameters.AddWithValue("genreId", songEntity.GenreId);
+
+                    c.Open();
+                    int Id = (int)cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void DeleteSong(int id)
+        {
+            using (SqlConnection c = new SqlConnection())
+            {
+                c.ConnectionString = _winAuthConnectionString;
+                using (SqlCommand cmd = c.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DeleteSong";
+                    cmd.Parameters.AddWithValue("id", id);
+                    c.Open();
+                    int Id = (int)cmd.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }
