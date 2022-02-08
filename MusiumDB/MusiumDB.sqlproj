@@ -87,6 +87,7 @@
     <Build Include="StoredProcedures\Artist\AddArtistSong.sql" />
     <Build Include="Types\T_ArtistId.sql" />
     <Build Include="StoredProcedures\Song\AddSongWithArtist.sql" />
+    <Build Include="StoredProcedures\Song\UpdateArtistSong.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MusiumDB.refactorlog" />
