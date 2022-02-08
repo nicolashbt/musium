@@ -10,6 +10,7 @@ import { ArtistComponent } from './artist/artist.component';
 import { ArtistsongComponent } from './song/artistsong/artistsong.component';
 import { SongEditComponent } from './song/song-edit/song-edit.component';
 import { SongDetailComponent } from './song/song-detail/song-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SongDetailComponent } from './song/song-detail/song-detail.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
