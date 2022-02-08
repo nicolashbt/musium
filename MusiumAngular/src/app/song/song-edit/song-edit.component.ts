@@ -14,7 +14,13 @@ import { SongService } from '../song.service';
 export class SongEditComponent implements OnInit {
 
   isEditing = true;
-  songForm: FormGroup = new FormGroup({ 'name': new FormControl("") });
+  songForm: FormGroup = new FormGroup({
+    'name': new FormControl(""),
+    'filePath': new FormControl(""),
+    'duration': new FormControl(""),
+    'genreId': new FormControl("")
+  });
+
   id!: number;
   songDetail!: Song;
   artists: Array<Artist> = [];
@@ -43,7 +49,12 @@ export class SongEditComponent implements OnInit {
   }
 
   initForm() {
-    this.songForm.patchValue({ name: this.songDetail.name });
+    this.songForm.patchValue({
+      name: this.songDetail.name,
+      filePath: this.songDetail.filePath,
+      duration: this.songDetail.duration,
+      genrId: this.songDetail.genreId
+    });
     //TODO add other fields
   }
 
