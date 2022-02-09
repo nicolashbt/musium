@@ -14,4 +14,11 @@ export class SongComponent implements OnInit {
   ngOnInit(): void {
     this._songService.getAll().subscribe(songs => this.songs = songs);
   }
+
+  delete(id:number){
+    this._songService.delete(id).subscribe({
+      next: (r) => console.log(r),
+      error: (e) => console.log(e), 
+    });
+  }
 }
