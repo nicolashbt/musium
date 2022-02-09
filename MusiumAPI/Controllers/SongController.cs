@@ -33,7 +33,7 @@ namespace MusiumAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
             _songRepository.AddSong(songForm.MapToDal(), songForm.ArtistIds);
-            return Ok();
+            return Ok(new { response = "Create succeeded" });
         }
 
         [HttpPut]
@@ -41,7 +41,7 @@ namespace MusiumAPI.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
             _songRepository.UpdateSong(songForm.MapToDal());
-            return Ok();
+            return Ok(new { response = "Update succeeded" });
         }
 
         [HttpPut("ArtistSong")]
@@ -56,7 +56,7 @@ namespace MusiumAPI.Controllers
         public IActionResult Delete(int Id)
         {
             _songRepository.DeleteSong(Id);
-            return Ok();
+            return Ok(new { response = "Delete succeeded" });
         }
 
     }
