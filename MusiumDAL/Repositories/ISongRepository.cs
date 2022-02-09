@@ -14,5 +14,7 @@ namespace MusiumDAL.Repositories
         public void DeleteSong(int id);
         public void AddSong(SongEntity songEntity, IEnumerable<int> artistIds);
         public void UpdateSong(SongEntity songEntity);
+        public void UpdateArtistSong(int songId, IEnumerable<int> artistIds);
+
     }
 }

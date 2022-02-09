@@ -35,5 +35,29 @@ namespace MusiumAPI.Controllers
             _songRepository.AddSong(songForm.MapToDal(), songForm.ArtistIds);
             return Ok();
         }
+
+        [HttpPut]
+        public IActionResult Update(SongForm songForm)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            _songRepository.UpdateSong(songForm.MapToDal());
+            return Ok();
+        }
+
+        [HttpPut("ArtistSong")]
+        public IActionResult UpdateArtistSong(SongForm songForm)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            _songRepository.UpdateArtistSong(songForm.MapToDal().Id, songForm.ArtistIds);
+            return Ok();
+        }
+
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(int Id)
+        {
+            _songRepository.DeleteSong(Id);
+            return Ok();
+        }
+
     }
 }

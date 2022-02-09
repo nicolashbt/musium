@@ -12,7 +12,7 @@ namespace MusiumDAL
     {
         static void Main(string[] args)
         {
-            //SongService songService = new SongService();
+            SongService songService = new SongService();
             //ArtistService artistService = new ArtistService();
 
             ////Testing GetAllSongs
@@ -58,6 +58,9 @@ namespace MusiumDAL
 
             ////Testing DeleteSong
             //songService.DeleteSong(1);
+
+            //Testing UpdateArtistSong
+            songService.UpdateArtistSong(1,new int[] { 1, 2 });
 
             ////Testing GetAllSongs
             //songs = songService.GetAllSongs();
