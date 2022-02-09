@@ -1,18 +1,16 @@
-<h3 *ngIf="!isEditing">Create</h3>
+<h3 *ngIf="!isEditing">Add new song</h3>
 <div *ngIf="isEditing">
-    <h3>Edit</h3>
-    <h4><span *ngFor="let a of artists; index as i">{{a.name}}<span *ngIf="i<artists.length-1">, </span></span> -
-        {{songDetail.name}}</h4>
+    <h3><span *ngFor="let a of artists; index as i">{{a.name}}<span *ngIf="i<artists.length-1">, </span></span> -
+        {{songDetail.name}}</h3>
+        <h4>Edit</h4>
 </div>
 <div class="row">
+    <hr />
     <div class="col-6">
-
-        
         <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
 
-                <label for="name">Artists</label>
-
+                <!-- <label for="name">Artists</label> -->
                 <app-artistsong-edit *ngFor="let a of artists" [songId]="songDetail.id" [artistId]="a.id"></app-artistsong-edit>
                 <!-- <app-artistsong-edit [songId]="songDetail.id"></app-artistsong-edit> -->
 
@@ -27,11 +25,12 @@
 
                 <label for="genreId">Genre Id</label>
                 <input type="text" id="genreId" formControlName="genreId" class="form-control">
-
             </div>
 
-            <button type="submit" class="btn btn-success">Save</button> |
-            <button type="submit" class="btn btn-danger" [routerLink]="['/songlist']">Cancel</button>
+            <div>
+                <button type="submit" class="btn btn-success">Save</button> |
+                <button class="btn btn-danger" [routerLink]="['/songlist']">Cancel</button>
+            </div>
         </form>
     </div>
 </div>

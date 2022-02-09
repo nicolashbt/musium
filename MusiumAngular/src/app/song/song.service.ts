@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Artist } from '../artist/artist.model';
 import { Song } from './song.model';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { Song } from './song.model';
 })
 export class SongService {
 
-  private _url = "https://localhost:7095/api/song";
+  private _url = "https://localhost:7095/api/song/";
 
   constructor(private _http: HttpClient) { }
 
@@ -19,10 +18,19 @@ export class SongService {
   }
 
   getById(id: number): Observable<Song> {
-    return this._http.get<Song>(this._url + "/" + id);
+    return this._http.get<Song>(this._url + id);
   }
 
-  add(songForm: FormGroup) { }
-  
-  edit(songForm: FormGroup) { }
+  add(songForm: FormGroup):Observable<Song> {
+    return this._http.post<Song>(this._url, songForm);
+  }
+
+  update(songForm: FormGroup):Observable<Song> {
+    console.log(songForm);
+    return this._http.put<Song>(this._url, songForm);
+  }
+
+  delete(id: number):Observable<Song> {
+    return this._http.delete<Song>(this._url + id);
+  }
 }

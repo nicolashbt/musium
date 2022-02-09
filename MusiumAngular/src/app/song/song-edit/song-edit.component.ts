@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Artist } from 'src/app/artist/artist.model';
 import { ArtistService } from 'src/app/artist/artist.service';
 import { Song } from '../song.model';
@@ -15,15 +15,19 @@ export class SongEditComponent implements OnInit {
 
   isEditing = true;
   songForm: FormGroup = new FormGroup({
+    'id': new FormControl(""),
     'name': new FormControl(""),
     'filePath': new FormControl(""),
     'duration': new FormControl(""),
-    'genreId': new FormControl("")
+    'genreId': new FormControl(""),
+    'isActive': new FormControl(""),
+    'artistIds': new FormControl("")
   });
 
   id!: number;
   songDetail!: Song;
   artists: Array<Artist> = [];
+  artistIds!: Array<Number>;
 
 
   constructor(private _songService: SongService,
@@ -31,7 +35,6 @@ export class SongEditComponent implements OnInit {
     private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.songDetail = new Song();
     this._route.params.subscribe(
       (params: Params) => {
@@ -50,21 +53,35 @@ export class SongEditComponent implements OnInit {
 
   initForm() {
     this.songForm.patchValue({
+      id: this.id,
       name: this.songDetail.name,
       filePath: this.songDetail.filePath,
       duration: this.songDetail.duration,
-      genrId: this.songDetail.genreId
+      genreId: this.songDetail.genreId,
+      isActive: this.songDetail.isActive
     });
-    //TODO add other fields
+  }
+
+  onlyIds(artists: Array<Artist>): Array<number> {
+    let artistIds: Array<number> = [];
+    for (let a of artists) {
+      artistIds.push(a.id);
+    }
+    return artistIds;
   }
 
   onSubmit() {
     if (this.isEditing) {
-      this._songService.edit(this.songForm);
+      this.songForm.patchValue({ artistIds: this.onlyIds(this.artists) });
+      this._songService.update(this.songForm.value).subscribe({
+        next: (r) => console.log(r),
+        error: (e) => console.log(e), 
+      });
     } else {
-      this._songService.add(this.songForm);
+      this._songService.add(this.songForm.value).subscribe({
+        next: (r) => console.log(r),
+        error: (e) => console.log(e), 
+      });
     }
   }
-
-
 }
