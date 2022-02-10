@@ -63,6 +63,7 @@
     <Folder Include="Views" />
     <Folder Include="StoredProcedures\Artist" />
     <Folder Include="Types" />
+    <Folder Include="Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Album.sql" />
@@ -88,6 +89,10 @@
     <Build Include="Types\T_ArtistId.sql" />
     <Build Include="StoredProcedures\Song\AddSongWithArtist.sql" />
     <Build Include="StoredProcedures\Song\UpdateArtistSong.sql" />
+    <Build Include="Functions\GetSecretKey.sql" />
+    <Build Include="StoredProcedures\User\UserLogin.sql" />
+    <Build Include="StoredProcedures\User\UserRegister.sql" />
+    <Build Include="Views\V_user.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MusiumDB.refactorlog" />
