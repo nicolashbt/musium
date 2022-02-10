@@ -9,11 +9,7 @@ namespace MusiumDAL.Repositories
 {
     public interface IUserRepository
     {
-        public interface IUserRepository
-        {
-            UserEntity Login(string nickname, string password);
-            int Register(UserEntity userEntity);
-        }
-
+        UserEntity Login(string nickname, string password);
+        int Register(UserEntity userEntity);
     }
 }
