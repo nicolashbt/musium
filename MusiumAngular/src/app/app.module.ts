@@ -12,6 +12,9 @@ import { SongEditComponent } from './song/song-edit/song-edit.component';
 import { SongDetailComponent } from './song/song-detail/song-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArtistsongEditComponent } from './song/song-edit/artistsong-edit/artistsong-edit.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ArtistsongEditComponent } from './song/song-edit/artistsong-edit/artist
     ArtistsongComponent,
     SongEditComponent,
     SongDetailComponent,
-    ArtistsongEditComponent
+    ArtistsongEditComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
