@@ -16,6 +16,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './index/index.component';
+import { JukeboxComponent } from './jukebox/jukebox.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { IndexComponent } from './index/index.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    IndexComponent
+    IndexComponent,
+    JukeboxComponent
   ],
   imports: [
     BrowserModule,

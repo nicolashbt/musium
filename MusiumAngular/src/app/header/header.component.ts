@@ -10,11 +10,19 @@ import { User } from '../auth/models/user.model';
 })
 export class HeaderComponent implements OnInit {
   user$: Observable<User | null> = of(null);
+  isAdmin: boolean = false;
+  user!: User | null;
 
   constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
     this.user$ = this._auth.user$;
+    this.user$.subscribe(u => {
+      this.user = u;
+      if (this.user?.role == 1) {
+        this.isAdmin = true;
+      }
+    });
   }
-
+  
 }
