@@ -36,7 +36,7 @@ namespace MusiumAPI.Controllers
             try
             {
                 int Id = _userRepository.Register(registerForm.MapToDal());
-                return Ok("Registration Succeeded");
+                return Ok(new { response = "Registration succeeded" });
             }
             catch (Exception e)
             {
