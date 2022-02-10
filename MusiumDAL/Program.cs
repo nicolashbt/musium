@@ -12,7 +12,7 @@ namespace MusiumDAL
     {
         static void Main(string[] args)
         {
-            SongService songService = new SongService();
+            //SongService songService = new SongService();
             //ArtistService artistService = new ArtistService();
 
             ////Testing GetAllSongs
@@ -60,7 +60,7 @@ namespace MusiumDAL
             //songService.DeleteSong(1);
 
             //Testing UpdateArtistSong
-            songService.UpdateArtistSong(1,new int[] { 1, 2 });
+            //songService.UpdateArtistSong(1,new int[] { 1, 2 });
 
             ////Testing GetAllSongs
             //songs = songService.GetAllSongs();
@@ -68,6 +68,11 @@ namespace MusiumDAL
             //{
             //    Console.WriteLine("Song name: " + songEntity.Name + " - id: " + songEntity.Id);
             //}
+
+            ////Testing User service
+            //UserService userService = new UserService();
+            //userService.Register(new UserEntity { Nickname = "user2", Password = "user2", Email = "user2@test.com" });
+            //UserEntity LoggedIn = userService.Login("user2", "user2");
         }
     }
 }
