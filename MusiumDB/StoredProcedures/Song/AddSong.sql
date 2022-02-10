@@ -6,6 +6,6 @@
 	@genreId INT = null
 AS
 BEGIN
-	INSERT INTO Song(name, isActive, filePath, duration, genreId)
+	INSERT INTO Song([name], isActive, filePath, duration, genreId)
 	VALUES (@name,@isActive,@filePath,@duration,@genreId)
 END
