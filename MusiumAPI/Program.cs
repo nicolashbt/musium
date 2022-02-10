@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<ISongRepository,SongService>();
 builder.Services.AddScoped<IArtistRepository,ArtistService>();
+builder.Services.AddScoped<IUserRepository,UserService>();
 
 builder.Services.AddCors(opt =>
 {
