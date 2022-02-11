@@ -19,44 +19,86 @@ namespace MusiumAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_songRepository.GetAllSongs().Select(s => s.MapToApi()));
+            try
+            {
+                return Ok(_songRepository.GetAllSongs().Select(s => s.MapToApi()));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("{Id}")]
         public IActionResult GetById(int Id)
         {
-            return Ok(_songRepository.GetSong(Id).MapToApi());
+            try
+            {
+                return Ok(_songRepository.GetSong(Id).MapToApi());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
         public IActionResult Create(SongForm songForm)
         {
-            if (!ModelState.IsValid) return BadRequest();
-            _songRepository.AddSong(songForm.MapToDal(), songForm.ArtistIds);
-            return Ok(new { response = "Create succeeded" });
+            if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
+            try
+            {
+                _songRepository.AddSong(songForm.MapToDal(), songForm.ArtistIds);
+                return Ok(new { response = "Create succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
         public IActionResult Update(SongForm songForm)
         {
-            if (!ModelState.IsValid) return BadRequest();
-            _songRepository.UpdateSong(songForm.MapToDal());
-            return Ok(new { response = "Update succeeded" });
+            if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
+            try
+            {
+                _songRepository.UpdateSong(songForm.MapToDal());
+                return Ok(new { response = "Update succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut("ArtistSong")]
         public IActionResult UpdateArtistSong(SongForm songForm)
         {
-            if (!ModelState.IsValid) return BadRequest();
-            _songRepository.UpdateArtistSong(songForm.MapToDal().Id, songForm.ArtistIds);
-            return Ok();
+            if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
+            try
+            {
+                _songRepository.UpdateArtistSong(songForm.MapToDal().Id, songForm.ArtistIds);
+                return Ok(new { response = "Update succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {
-            _songRepository.DeleteSong(Id);
-            return Ok(new { response = "Delete succeeded" });
+            try
+            {
+                _songRepository.DeleteSong(Id);
+                return Ok(new { response = "Delete succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
     }

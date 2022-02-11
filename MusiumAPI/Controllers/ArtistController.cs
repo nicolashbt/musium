@@ -3,8 +3,6 @@ using MusiumAPI.Mappers;
 using MusiumAPI.Models;
 using MusiumDAL.Repositories;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MusiumAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -21,27 +19,55 @@ namespace MusiumAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_artistRepository.GetAllArtists().Select(a => a.MapToApi()));
+            try
+            {
+                return Ok(_artistRepository.GetAllArtists().Select(a => a.MapToApi()));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(_artistRepository.GetArtist(id).MapToApi());
+            try
+            {
+                return Ok(_artistRepository.GetArtist(id).MapToApi());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("bysong/{id}")]
         public IActionResult GetBySongId(int id)
         {
-            return Ok(_artistRepository.GetBySongId(id).Select(a => a.MapToApi()));
+            try
+            {
+                return Ok(_artistRepository.GetBySongId(id).Select(a => a.MapToApi()));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
         public IActionResult Create(ArtistForm artistForm)
         {
-            if (!ModelState.IsValid) return BadRequest();
-            _artistRepository.AddArtist(artistForm.MapToDal());
-            return Ok();
+            if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
+            try
+            {
+                _artistRepository.AddArtist(artistForm.MapToDal());
+                return Ok(new { response = "Create succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

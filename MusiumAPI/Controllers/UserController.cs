@@ -26,7 +26,7 @@ namespace MusiumAPI.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest(e.Message);
             }
         }
         [HttpPost("register")]
@@ -40,7 +40,7 @@ namespace MusiumAPI.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest(e.Message);
             }
         }
 
