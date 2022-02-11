@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { registerFormModel } from '../models/registerform.model';
+import { passwordMismatchValidator } from '../models/registerform.model'
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,10 @@ import { registerFormModel } from '../models/registerform.model';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm = new FormGroup(registerFormModel);
+  registerForm = new FormGroup(registerFormModel, { validators: passwordMismatchValidator });
+  get form(): { [key: string]: AbstractControl; } {
+    return this.registerForm.controls;
+  }
   constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
@@ -23,5 +27,4 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
-
 }
