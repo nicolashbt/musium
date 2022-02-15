@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Artist } from 'src/app/artist/artist.model';
 import { ArtistService } from 'src/app/artist/artist.service';
 import { Song } from '../song.model';
@@ -29,10 +29,10 @@ export class SongEditComponent implements OnInit {
   artists: Array<Artist> = [];
   artistIds!: Array<Number>;
 
-
   constructor(private _songService: SongService,
     private _artistService: ArtistService,
-    private _route: ActivatedRoute) { }
+    private _route: ActivatedRoute,
+    private _router: Router) { }
 
   ngOnInit(): void {
     this.songDetail = new Song();
@@ -48,6 +48,7 @@ export class SongEditComponent implements OnInit {
           this.songDetail = new Song();
           this.initForm();
         }
+        this._songService.refreshList.subscribe();
       });
   }
 
@@ -74,13 +75,20 @@ export class SongEditComponent implements OnInit {
     if (this.isEditing) {
       this.songForm.patchValue({ artistIds: this.onlyIds(this.artists) });
       this._songService.update(this.songForm.value).subscribe({
-        next: (r) => console.log(r),
-        error: (e) => console.log(e), 
+        next: (r) => {
+          console.log(r);
+          this._router.navigateByUrl("/songlist/" + this.id + "/details");
+          this._songService.refreshList.next(true);
+        },
+        error: (e) => console.log(e),
       });
     } else {
       this._songService.add(this.songForm.value).subscribe({
-        next: (r) => console.log(r),
-        error: (e) => console.log(e), 
+        next: (r) => {
+          console.log(r);
+          this._songService.refreshList.next(true);
+        },
+        error: (e) => console.log(e),
       });
     }
   }

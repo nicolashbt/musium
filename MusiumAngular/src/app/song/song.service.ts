@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Song } from './song.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SongService {
-
+  refreshList = new BehaviorSubject(false);
   private _url = "https://localhost:7095/api/song/";
 
   constructor(private _http: HttpClient) { }
@@ -21,16 +21,16 @@ export class SongService {
     return this._http.get<Song>(this._url + id);
   }
 
-  add(songForm: FormGroup):Observable<Song> {
+  add(songForm: FormGroup): Observable<Song> {
     return this._http.post<Song>(this._url, songForm);
   }
 
-  update(songForm: FormGroup):Observable<Song> {
+  update(songForm: FormGroup): Observable<Song> {
     console.log(songForm);
     return this._http.put<Song>(this._url, songForm);
   }
 
-  delete(id: number):Observable<Song> {
+  delete(id: number): Observable<Song> {
     return this._http.delete<Song>(this._url + id);
   }
 }
