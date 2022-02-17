@@ -27,6 +27,7 @@ export class SongEditComponent implements OnInit {
   id!: number;
   songDetail!: Song;
   artists: Array<Artist> = [];
+  artistsToSave: Array<Artist> = [];
   artistIds!: Array<Number>;
 
   constructor(private _songService: SongService,
@@ -73,7 +74,7 @@ export class SongEditComponent implements OnInit {
 
   onSubmit() {
     if (this.isEditing) {
-      this.songForm.patchValue({ artistIds: this.onlyIds(this.artists) });
+      this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
       this._songService.update(this.songForm.value).subscribe({
         next: (r) => {
           console.log(r);
@@ -83,10 +84,12 @@ export class SongEditComponent implements OnInit {
         error: (e) => console.log(e),
       });
     } else {
+      this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
       this._songService.add(this.songForm.value).subscribe({
         next: (r) => {
           console.log(r);
           this._songService.refreshList.next(true);
+          this._router.navigateByUrl("/songlist");
         },
         error: (e) => console.log(e),
       });
@@ -94,6 +97,6 @@ export class SongEditComponent implements OnInit {
   }
 
   saveTheArtists(artists: Artist[]) {
-    this.artists = artists;
+    this.artistsToSave = artists;
   }
 }
