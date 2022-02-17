@@ -29,7 +29,7 @@
           <td>
             <a [routerLink]="[song.id + '/edit']" routerLinkActive="router-link-active">Edit</a> |
             <a [routerLink]="[song.id + '/details']" routerLinkActive="router-link-active">Details</a> |
-            <a (click)="delete(song.id)" role="button" >Delete</a>
+            <a class="link" (click)="delete(song.id)" role="button" >Delete</a>
           </td>
         </tr>
       </tbody>
