@@ -15,6 +15,9 @@ export class ArtistsongEditComponent implements OnInit {
     if (id != null) {
       this._artistService.getBySongId(id).subscribe(a => this.artistsSong = a);
     }
+    else {
+      this.artistsSong = [];
+    }
   }
   isEditing = false;
   artistName!: string;
@@ -29,42 +32,26 @@ export class ArtistsongEditComponent implements OnInit {
     let index = this.artistsSong.indexOf(artist);
     this.artistsSong.splice(index, 1);
     console.log(artist.name + " removed.")
-    this.artistTrigger();
+    this.artistsEvent.emit(this.artistsSong);
   }
 
   findArtist(artist: string): Artist | null {
     let art = this.allArtists.find(a => a.name === artist);
     if (art) {
-      // console.log(art);
       return art;
     }
     return null;
   }
 
-  isAlreadyInList(artist: Artist): boolean {
-    if (this.artistsSong.find(a => a.name === artist.name)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   clicked() {
     let art = this.findArtist(this.artistName);
-    if (art != null && !this.isAlreadyInList(art)) {
+    if (art != null && (this.artistsSong.find(a => a.name === this.artistName) == null)) {
       this.artistsSong.push(art);
       console.log(art.name + " added.");
-      this.artistTrigger();
+      console.log(this.artistsSong);
+      this.artistsEvent.emit(this.artistsSong);
     }
     this.artistName = "";
-  }
-
-  addArtistByName(artistName: string) {
-    this.artistName = "";
-  }
-
-  artistTrigger() {
-    this.artistsEvent.emit(this.artistsSong);
   }
 
 }
