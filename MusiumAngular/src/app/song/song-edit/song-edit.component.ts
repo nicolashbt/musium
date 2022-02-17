@@ -92,4 +92,8 @@ export class SongEditComponent implements OnInit {
       });
     }
   }
+
+  saveTheArtists(artists: Artist[]) {
+    this.artists = artists;
+  }
 }

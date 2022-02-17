@@ -6,28 +6,27 @@
 </div>
 <div class="row">
     <hr />
-    <div class="col-6">
+    <div class="col-8">
         <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
 
-                <!-- <label for="name">Artists</label> -->
-                <app-artistsong-edit *ngFor="let a of artists" [songId]="songDetail.id" [artistId]="a.id"></app-artistsong-edit>
-                <!-- <app-artistsong-edit [songId]="songDetail.id"></app-artistsong-edit> -->
+                <label for="name">Artists</label>
+                <app-artistsong-edit [songId]="songDetail.id" (artistsEvent)="saveTheArtists($event)"></app-artistsong-edit>
 
                 <label for="name">Name</label>
                 <input type="text" id="name" formControlName="name" class="form-control">
 
-                <label for="filePath">File Path</label>
-                <input type="text" id="filePath" formControlName="filePath" class="form-control">
+                <!-- <label for="filePath">File Path</label>
+                <input type="text" id="filePath" formControlName="filePath" class="form-control"> -->
 
                 <label for="duration">Duration</label>
                 <input type="text" id="duration" formControlName="duration" class="form-control">
 
-                <label for="genreId">Genre Id</label>
-                <input type="text" id="genreId" formControlName="genreId" class="form-control">
+                <!-- <label for="genreId">Genre Id</label>
+                <input type="text" id="genreId" formControlName="genreId" class="form-control"> -->
             </div>
 
-            <div>
+            <div style="margin: 5px;">
                 <button type="submit" class="btn btn-success">Save</button> |
                 <button class="btn btn-danger" [routerLink]="['/songlist']">Cancel</button>
             </div>
