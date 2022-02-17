@@ -145,5 +145,30 @@ namespace MusiumDAL.Services
             }
             return artists;
         }
+
+        public void UpdateArtist(ArtistEntity artistEntity)
+        {
+            using (SqlConnection c = new SqlConnection())
+            {
+                c.ConnectionString = _winAuthConnectionString;
+                using (SqlCommand cmd = c.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UpdateArtist";
+                    cmd.Parameters.AddWithValue("id", artistEntity.Id);
+                    cmd.Parameters.AddWithValue("name", artistEntity.Name);
+
+                    try
+                    {
+                        c.Open();
+                        int Id = (int)cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+        }
     }
 }

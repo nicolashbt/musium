@@ -55,6 +55,21 @@ namespace MusiumAPI.Controllers
             }
         }
 
+        [HttpPut]
+        public IActionResult Update(ArtistForm artistForm)
+        {
+            if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
+            try
+            {
+                _artistRepository.UpdateArtist(artistForm.MapToDal());
+                return Ok(new { response = "Update succeeded" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPost]
         public IActionResult Create(ArtistForm artistForm)
         {

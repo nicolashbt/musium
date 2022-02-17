@@ -14,6 +14,6 @@ namespace MusiumDAL.Repositories
         public ArtistEntity GetArtist(int id);
         //public void DeleteArtist(int id);
         public int AddArtist(ArtistEntity artistEntity);
-        //public void UpdateArtist(ArtistEntity artistEntity);
+        public void UpdateArtist(ArtistEntity artistEntity);
     }
 }
