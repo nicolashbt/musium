@@ -61,8 +61,8 @@ namespace MusiumAPI.Controllers
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
             try
             {
-                _artistRepository.AddArtist(artistForm.MapToDal());
-                return Ok(new { response = "Create succeeded" });
+                int id = _artistRepository.AddArtist(artistForm.MapToDal());
+                return Ok(new { response = id });
             }
             catch (Exception e)
             {
