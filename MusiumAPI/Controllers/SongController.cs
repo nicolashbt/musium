@@ -63,7 +63,7 @@ namespace MusiumAPI.Controllers
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
             try
             {
-                _songRepository.UpdateSong(songForm.MapToDal());
+                _songRepository.UpdateSongWithArtists(songForm.MapToDal(),songForm.ArtistIds);
                 return Ok(new { response = "Update succeeded" });
             }
             catch (Exception e)
