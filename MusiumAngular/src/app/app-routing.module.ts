@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
+import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
 import { ArtistComponent } from './artist/artist.component';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthGuard } from './auth/auth.guard';
@@ -15,12 +17,22 @@ const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
   {
-    path: 'songlist', component: SongComponent, canActivate: [AdminGuard], children: [
+    // path: 'songlist', component: SongComponent, children: [
+      path: 'songlist', component: SongComponent, canActivate: [AdminGuard], children: [
       { path: ':id/details', component: SongDetailComponent },
       { path: ':id/edit', component: SongEditComponent },
       { path: 'add', component: SongEditComponent }
     ]
+  },  
+  {
+    // path: 'artistlist', component: ArtistComponent, children: [
+      path: 'artistlist', component: ArtistComponent, canActivate: [AdminGuard], children: [
+      { path: ':id/details', component: ArtistDetailComponent },
+      { path: ':id/edit', component: ArtistEditComponent },
+      { path: 'add', component: ArtistEditComponent }
+    ]
   },
+  // { path: 'jukebox', component: JukeboxComponent},
   { path: 'jukebox', component: JukeboxComponent, canActivate: [AuthGuard] },
   { path: 'artistlist', component: ArtistComponent, canActivate: [AdminGuard] },
   { path: 'register', component: RegisterComponent },

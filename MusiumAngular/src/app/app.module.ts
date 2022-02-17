@@ -16,6 +16,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './index/index.component';
 import { JukeboxComponent } from './jukebox/jukebox.component';
+import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
+import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { JukeboxComponent } from './jukebox/jukebox.component';
     LoginComponent,
     RegisterComponent,
     IndexComponent,
-    JukeboxComponent
+    JukeboxComponent,
+    ArtistDetailComponent,
+    ArtistEditComponent
   ],
   imports: [
     BrowserModule,
