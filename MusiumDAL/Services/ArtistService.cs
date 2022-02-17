@@ -13,7 +13,7 @@ namespace MusiumDAL.Services
     public class ArtistService : IArtistRepository
     {
         private string _winAuthConnectionString
-            = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MusiumDB;Integrated Security=True;Connect Timeout=60;";
+            = @"Data Source=DESKTOP-90GHBCB;Initial Catalog=MusiumDB;Integrated Security=True;Connect Timeout=60;";
 
         public IEnumerable<ArtistEntity> GetBySongId(int songId)
         {
