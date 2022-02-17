@@ -30,14 +30,19 @@ namespace MusiumDAL.Services
                     cmd.Parameters.AddWithValue("duration", songEntity.Duration);
                     cmd.Parameters.AddWithValue("genreId", songEntity.GenreId);
 
-                    //@artistId T_ArtistId READONLY
                     DataTable ArtistIds = new DataTable();
-                    ArtistIds.Columns.Add("id", typeof(int));
+                    ArtistIds.Columns.Add(new DataColumn("id", typeof(int)));
                     foreach (int artistId in artistIds)
                     {
                         ArtistIds.Rows.Add(artistId);
                     }
-                    cmd.Parameters.Add(new SqlParameter("artistId", ArtistIds));
+                    SqlParameter PArtistId = new SqlParameter()
+                    {
+                        ParameterName = "artistId",
+                        Value = ArtistIds,
+                        TypeName = "T_ArtistId"
+                    };
+                    cmd.Parameters.Add(PArtistId);
 
                     try
                     {
