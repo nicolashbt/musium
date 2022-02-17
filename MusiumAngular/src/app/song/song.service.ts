@@ -26,7 +26,6 @@ export class SongService {
   }
 
   update(songForm: FormGroup): Observable<Song> {
-    console.log(songForm);
     return this._http.put<Song>(this._url, songForm);
   }
 
