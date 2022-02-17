@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Song } from './song.model';
 import { SongService } from './song.service';
 
@@ -10,7 +11,8 @@ import { SongService } from './song.service';
 export class SongComponent implements OnInit {
   public songs: Array<Song> = [];
 
-  constructor(private _songService: SongService) { }
+  constructor(private _songService: SongService,
+    private _router:Router) { }
 
   ngOnInit(): void {
     this._songService.refreshList.subscribe(f => {
@@ -23,6 +25,7 @@ export class SongComponent implements OnInit {
       next: (r) => {
         console.log(r);
         this._songService.refreshList.next(true);
+        this._router.navigateByUrl("/songlist");
       },
       error: (e) => console.log(e),
     });
