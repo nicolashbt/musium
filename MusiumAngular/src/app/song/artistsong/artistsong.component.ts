@@ -9,12 +9,13 @@ import { ArtistService } from 'src/app/artist/artist.service';
 export class ArtistsongComponent implements OnInit {
   public artists: Array<Artist> = [];
 
-  @Input() songId!: number;
+  @Input() set songId(id: number){
+    this._artistService.getBySongId(id).subscribe(a => this.artists = a);
+  }
 
   constructor(private _artistService: ArtistService) { }
 
   ngOnInit(): void {
-    this._artistService.getBySongId(this.songId).subscribe(a => this.artists = a);
   }
 
 }
