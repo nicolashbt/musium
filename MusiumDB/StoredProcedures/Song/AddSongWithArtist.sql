@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[AddSongWithArtist]
 	@name NVARCHAR(50),
-	@isActive BIT = 1,
-	@artistId T_ArtistId READONLY,
-	@filePath NVARCHAR(250) = null,
 	@duration INT = null,
+	@artistId T_ArtistId READONLY,
+	@isActive BIT = 1,
+	@filePath NVARCHAR(250) = null,
 	@genreId INT = null
 AS
 BEGIN

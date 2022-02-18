@@ -94,7 +94,7 @@
     <Build Include="StoredProcedures\User\UserRegister.sql" />
     <Build Include="Views\V_user.sql" />
     <Build Include="StoredProcedures\Song\UpdateSongWithArtists.sql" />
-    <Build Include="StoredProcedures\Song\UpdateArtist.sql" />
+    <Build Include="StoredProcedures\Artist\UpdateArtist.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MusiumDB.refactorlog" />
