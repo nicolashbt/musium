@@ -18,23 +18,25 @@ import { IndexComponent } from './index/index.component';
 import { JukeboxComponent } from './jukebox/jukebox.component';
 import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
 import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
+import { DurationPipe } from './jukebox/duration.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    IndexComponent,
     SongComponent,
     ArtistComponent,
     ArtistsongComponent,
+    ArtistDetailComponent,
+    ArtistEditComponent,
     SongEditComponent,
     SongDetailComponent,
     ArtistsongEditComponent,
+    JukeboxComponent,
     LoginComponent,
     RegisterComponent,
-    IndexComponent,
-    JukeboxComponent,
-    ArtistDetailComponent,
-    ArtistEditComponent
+    DurationPipe
   ],
   imports: [
     BrowserModule,
