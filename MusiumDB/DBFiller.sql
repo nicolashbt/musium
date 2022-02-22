@@ -44,5 +44,5 @@ UPDATE [User]
 SET Role=1
 WHERE Id=1
 
-EXEC UserLogin 'user1', 'user1'
-EXEC UserLogin 'admin1', 'admin1'
+--EXEC UserLogin 'user1', 'user1'
+--EXEC UserLogin 'admin1', 'admin1'
