@@ -2,7 +2,7 @@
 <div *ngIf="isEditing">
     <h3><span *ngFor="let a of artists; index as i">{{a.name}}<span *ngIf="i<artists.length-1">, </span></span> -
         {{songDetail.name}}</h3>
-        <h4>Edit</h4>
+    <h4>Edit</h4>
 </div>
 <div class="row">
     <hr />
@@ -11,19 +11,24 @@
             <div class="form-group">
 
                 <label for="name">Artists</label>
-                <app-artistsong-edit [songId]="songDetail.id" (artistsEvent)="saveTheArtists($event)"></app-artistsong-edit>
+                <app-artistsong-edit [songId]="songDetail.id" (artistsEvent)="saveTheArtists($event)">
+                </app-artistsong-edit>
 
                 <label for="name">Name</label>
                 <input type="text" id="name" formControlName="name" class="form-control">
 
-                <!-- <label for="filePath">File Path</label>
-                <input type="text" id="filePath" formControlName="filePath" class="form-control"> -->
+                <div class="text-danger"
+                    *ngIf="form['name'].errors?.['required'] && (form['name'].touched || submittedFlag)">
+                    This field is required.
+                </div>
 
                 <label for="duration">Duration</label>
                 <input type="text" id="duration" formControlName="duration" class="form-control">
 
-                <!-- <label for="genreId">Genre Id</label>
-                <input type="text" id="genreId" formControlName="genreId" class="form-control"> -->
+                <div class="text-danger" *ngIf="form['duration'].errors && form['duration'].touched">
+                    Duration must be a number.
+                </div>
+
             </div>
 
             <div style="margin: 5px;">

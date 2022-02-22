@@ -10,7 +10,7 @@
                 </div>
 
                 <label for="nickname">Username</label>
-                <div class="text-danger" *ngIf="form['nickname'].errors?.['required'] && form['nickname'].touched">
+                <div class="text-danger" *ngIf="form['nickname'].errors?.['required'] && (form['nickname'].touched || submittedFlag)">
                     This field is required.
                 </div>
                 <div class="text-danger" *ngIf="form['nickname'].errors?.['minlength'] && form['nickname'].touched">
@@ -19,7 +19,7 @@
                 <input type="text" id="nickname" formControlName="nickname" class="form-control">
 
                 <label for="password">Password</label>
-                <div class="text-danger" *ngIf="form['password'].errors?.['required'] && form['password'].touched">
+                <div class="text-danger" *ngIf="form['password'].errors?.['required'] && (form['password'].touched || submittedFlag)">
                     This field is required.
                 </div>
                 <div class="text-danger" *ngIf="form['password'].errors?.['minlength'] && form['password'].touched">
@@ -28,7 +28,7 @@
                 <input type="password" id="password" formControlName="password" class="form-control">
 
                 <label for="repeatPassword">Repeat password</label>
-                <div class="text-danger" *ngIf="form['repeatPassword'].errors?.['required'] && form['repeatPassword'].touched">
+                <div class="text-danger" *ngIf="form['repeatPassword'].errors?.['required'] && (form['repeatPassword'].touched || submittedFlag)">
                     This field is required.
                 </div>
                 <div class="text-danger" *ngIf="form['repeatPassword'].errors?.['minlength'] && form['repeatPassword'].touched">
@@ -37,7 +37,7 @@
                 <input type="password" id="repeatPassword" formControlName="repeatPassword" class="form-control">
 
                 <label for="email">Email</label>
-                <div class="text-danger" *ngIf="form['email'].errors?.['required'] && form['email'].touched">
+                <div class="text-danger" *ngIf="form['email'].errors?.['required'] && (form['email'].touched || submittedFlag)">
                     This field is required.
                 </div>
                 <div class="text-danger" *ngIf="form['email'].errors?.['email'] && form['email'].touched">
@@ -47,7 +47,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button> |
+                <button type="submit" class="btn btn-primary">Register</button> |
                 <button class="btn btn-danger" [routerLink]="['/']">Cancel</button>
             </div>
         </form>

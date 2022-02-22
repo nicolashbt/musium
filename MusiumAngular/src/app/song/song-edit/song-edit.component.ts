@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Artist } from 'src/app/artist/artist.model';
 import { ArtistService } from 'src/app/artist/artist.service';
@@ -12,13 +12,16 @@ import { SongService } from '../song.service';
   styleUrls: ['./song-edit.component.scss']
 })
 export class SongEditComponent implements OnInit {
-
+  submittedFlag = false;
+  get form(): { [key: string]: AbstractControl; } {
+    return this.songForm.controls;
+  }
   isEditing = true;
   songForm: FormGroup = new FormGroup({
     'id': new FormControl(""),
-    'name': new FormControl(""),
+    'name': new FormControl("", [Validators.required]),
     'filePath': new FormControl(""),
-    'duration': new FormControl(""),
+    'duration': new FormControl("", [Validators.pattern(/^[0-9]\d*$/), Validators.min(1)]),
     'genreId': new FormControl(""),
     'isActive': new FormControl(""),
     'artistIds': new FormControl("")
@@ -73,26 +76,33 @@ export class SongEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submittedFlag = true;
     if (this.isEditing) {
-      this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
-      this._songService.update(this.songForm.value).subscribe({
-        next: (r) => {
-          console.log(r);
-          this._router.navigateByUrl("/songlist/" + this.id + "/details");
-          this._songService.refreshList.next(true);
-        },
-        error: (e) => console.log(e),
-      });
+      if (this.songForm.valid) {
+        this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
+        this._songService.update(this.songForm.value).subscribe({
+          next: (r) => {
+            console.log(r);
+            this._router.navigateByUrl("/songlist/" + this.id + "/details");
+            this._songService.refreshList.next(true);
+            this.submittedFlag = false;
+          },
+          error: (e) => console.log(e),
+        });
+      }
     } else {
-      this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
-      this._songService.add(this.songForm.value).subscribe({
-        next: (r) => {
-          console.log(r);
-          this._songService.refreshList.next(true);
-          this._router.navigateByUrl("/songlist");
-        },
-        error: (e) => console.log(e),
-      });
+      if (this.songForm.valid) {
+        this.songForm.patchValue({ artistIds: this.onlyIds(this.artistsToSave) });
+        this._songService.add(this.songForm.value).subscribe({
+          next: (r) => {
+            console.log(r);
+            this._songService.refreshList.next(true);
+            this._router.navigateByUrl("/songlist");
+            this.submittedFlag = false;
+          },
+          error: (e) => console.log(e),
+        });
+      }
     }
   }
 

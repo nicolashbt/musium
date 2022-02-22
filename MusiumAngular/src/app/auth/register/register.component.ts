@@ -10,6 +10,7 @@ import { passwordMismatchValidator } from '../models/registerform.model'
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  submittedFlag = false;
   registerForm = new FormGroup(registerFormModel, { validators: passwordMismatchValidator });
   get form(): { [key: string]: AbstractControl; } {
     return this.registerForm.controls;
@@ -20,9 +21,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submittedFlag = true;
     if (this.registerForm.valid) {
       this._auth.register(this.registerForm).subscribe({
-        next: (r) => console.log(r),
+        next: (r) => {
+          console.log(r);
+          this.submittedFlag = false;
+        },
         error: (e) => console.log(e),
       });
     }

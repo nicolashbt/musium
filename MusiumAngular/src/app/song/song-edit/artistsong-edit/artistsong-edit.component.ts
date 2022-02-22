@@ -8,6 +8,7 @@ import { ArtistService } from 'src/app/artist/artist.service';
   styleUrls: ['./artistsong-edit.component.scss']
 })
 export class ArtistsongEditComponent implements OnInit {
+  notFoundFlag = false;
   @Output() artistsEvent = new EventEmitter<Artist[]>();
   artistsSong!: Artist[];
   allArtists!: Artist[];
@@ -31,15 +32,17 @@ export class ArtistsongEditComponent implements OnInit {
   removeArtist(artist: Artist) {
     let index = this.artistsSong.indexOf(artist);
     this.artistsSong.splice(index, 1);
-    console.log(artist.name + " removed.")
+    // console.log(artist.name + " removed.")
     this.artistsEvent.emit(this.artistsSong);
   }
 
   findArtist(artist: string): Artist | null {
     let art = this.allArtists.find(a => a.name === artist);
     if (art) {
+      this.notFoundFlag = false;
       return art;
     }
+    this.notFoundFlag = true;
     return null;
   }
 
@@ -47,7 +50,7 @@ export class ArtistsongEditComponent implements OnInit {
     let art = this.findArtist(this.artistName);
     if (art != null && (this.artistsSong.find(a => a.name === this.artistName) == null)) {
       this.artistsSong.push(art);
-      console.log(art.name + " added.");
+      // console.log(art.name + " added.");
       console.log(this.artistsSong);
       this.artistsEvent.emit(this.artistsSong);
     }
