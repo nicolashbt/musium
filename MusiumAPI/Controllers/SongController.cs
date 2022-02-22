@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusiumAPI.Mappers;
 using MusiumAPI.Models;
 using MusiumDAL.Repositories;
@@ -17,6 +19,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         public IActionResult GetAll()
         {
             try
@@ -30,6 +33,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpGet("{Id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         public IActionResult GetById(int Id)
         {
             try
@@ -43,6 +47,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult Create(SongForm songForm)
         {
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
@@ -58,6 +63,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult Update(SongForm songForm)
         {
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
@@ -73,6 +79,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpPut("ArtistSong")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult UpdateArtistSong(SongForm songForm)
         {
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
@@ -88,6 +95,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult Delete(int Id)
         {
             try

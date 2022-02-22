@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MusiumAPI.Mappers;
 using MusiumAPI.Models.UserModels;
+using MusiumAPI.Tools;
 using MusiumDAL.Repositories;
 
 namespace MusiumAPI.Controllers
@@ -11,9 +12,11 @@ namespace MusiumAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        public UserController(IUserRepository userRepository)
+        private readonly TokenManager _token;
+        public UserController(IUserRepository userRepository, TokenManager tokenManager)
         {
             this._userRepository = userRepository;
+            this._token = tokenManager;
         }
         [HttpPost("login")]
         public IActionResult Login(LoginForm loginForm)
@@ -22,6 +25,7 @@ namespace MusiumAPI.Controllers
             try
             {
                 User CurrentUser = _userRepository.Login(loginForm.Nickname, loginForm.Password).MapToApi();
+                CurrentUser.Token = _token.GenerateJwt(CurrentUser);
                 return Ok(CurrentUser);
             }
             catch (Exception e)

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusiumAPI.Mappers;
 using MusiumAPI.Models;
 using MusiumDAL.Repositories;
@@ -17,6 +19,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         public IActionResult GetAll()
         {
             try
@@ -30,6 +33,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         public IActionResult GetById(int id)
         {
             try
@@ -43,6 +47,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpGet("bysong/{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         public IActionResult GetBySongId(int id)
         {
             try
@@ -56,6 +61,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult Update(ArtistForm artistForm)
         {
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
@@ -71,6 +77,7 @@ namespace MusiumAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
         public IActionResult Create(ArtistForm artistForm)
         {
             if (!ModelState.IsValid) return BadRequest(new { response = "Form is not valid." });
