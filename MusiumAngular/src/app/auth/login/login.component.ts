@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { loginFormModel } from '../models/loginform.model';
@@ -10,7 +10,11 @@ import { loginFormModel } from '../models/loginform.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  errorFlag = false;
   loginForm = new FormGroup(loginFormModel);
+  get form(): { [key: string]: AbstractControl; } {
+    return this.loginForm.controls;
+  }
 
   constructor(private _auth: AuthService,
     private _router: Router) { }
@@ -27,11 +31,15 @@ export class LoginComponent implements OnInit {
         next: (u => {
           // console.log(u);
           if (u.id) {
+            this.errorFlag = false;
             this._auth.openSession(u);
             this._router.navigateByUrl("/");
           }
         }),
-        error: (e) => console.log(e),
+        error: (e) => {
+          // console.log(e);
+          this.errorFlag = true;
+        },
       });
     }
   }

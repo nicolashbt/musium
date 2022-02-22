@@ -9,6 +9,9 @@
 
                 <label for="password">Password</label>
                 <input type="password" id="password" formControlName="password" class="form-control">
+                <div class="text-danger" *ngIf="errorFlag">
+                    Invalid login or password.
+                </div>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Login</button> |
