@@ -33,9 +33,9 @@ export class JukeboxComponent implements OnInit {
   }
 
   nextSong() {
-    var rand = Math.floor((Math.random() * (this.songs.length - 1)) + 1);
-    if (this.lastRand == rand) {
-      rand = Math.floor((Math.random() * (this.songs.length - 1)) + 1);
+    var rand = Math.floor((Math.random() * (this.songs.length)));
+    while (this.lastRand == rand) {
+      rand = Math.floor((Math.random() * (this.songs.length)));
     }
     this.currentSong = this.songs[rand];
     this.secondsElapsed = this.currentSong.duration;
