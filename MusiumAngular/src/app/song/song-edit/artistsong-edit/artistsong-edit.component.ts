@@ -50,8 +50,6 @@ export class ArtistsongEditComponent implements OnInit {
     let art = this.findArtist(this.artistName);
     if (art != null && (this.artistsSong.find(a => a.name === this.artistName) == null)) {
       this.artistsSong.push(art);
-      // console.log(art.name + " added.");
-      console.log(this.artistsSong);
       this.artistsEvent.emit(this.artistsSong);
     }
     this.artistName = "";
